@@ -28,8 +28,8 @@
         </activity>
         <!-- Swipe Carousel -->
         <activity
-            android:name=".SwipeCarousel"
-            android:label="SwipeCarousel"
+            android:name=".SettingsManager"
+            android:label="SettingsManager"
             android:parentActivityName=".MainActivity"
             />
     </application>

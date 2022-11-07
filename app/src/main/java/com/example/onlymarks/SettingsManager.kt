@@ -3,14 +3,14 @@ package com.example.onlymarks
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.onlymarks.databinding.SwipeCarouselBinding
+import com.example.onlymarks.databinding.SettingsManagerBinding
 
-class SwipeCarousel : AppCompatActivity() {
+class SettingsManager : AppCompatActivity() {
 
-    private lateinit var swipeCarouselBinding: SwipeCarouselBinding
+    private lateinit var settingsManagerBinding: SettingsManagerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("XXX", "Launching Swipe Carousel")
+        Log.d("XXX", "Launching settings manager")
     }
 }
