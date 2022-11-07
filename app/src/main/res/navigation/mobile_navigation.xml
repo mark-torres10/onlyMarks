@@ -12,6 +12,13 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_swipe"
+        android:name="com.example.onlymarks.ui.swipeCarousel.SwipeCarouselFragment"
+        android:label="@string/title_swipeCarousel"
+        tools:layout="@layout/swipe_carousel_fragment"
+        />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.onlymarks.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"

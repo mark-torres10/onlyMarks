@@ -39,18 +39,13 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_swipe,
+                R.id.navigation_notifications
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // when clicking the start swiping button, go to the new swipes intent
-        binding.contentMain.startSwipingButton.setOnClickListener {
-            val swipeCarouselIntent = Intent(this, SwipeCarousel::class.java)
-            val extras = Bundle()
-            swipeCarouselIntent.putExtras(extras)
-            resultLauncher.launch(swipeCarouselIntent)
-        }
     }
 }
