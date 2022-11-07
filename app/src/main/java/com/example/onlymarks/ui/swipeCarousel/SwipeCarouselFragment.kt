@@ -1,5 +1,6 @@
 package com.example.onlymarks.ui.swipeCarousel
 import com.yuyakaido.android.cardstackview.CardStackView
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.onlymarks.databinding.SwipeCarouselFragmentBinding
+import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.Direction
 
 class SwipeCarouselFragment: Fragment() {
 
@@ -18,22 +21,26 @@ class SwipeCarouselFragment: Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private fun initCardListeners(binding: SwipeCarouselFragmentBinding) {
-
-        // on click, flip card
-        binding.swipeCardLayout.setOnClickListener {
-            Log.d("XXX", "Flipping card")
+    val cardStackListener = object : CardStackListener {
+        override fun onCardDragging(direction: Direction?, ratio: Float) {
         }
 
-        // on left swipe,
-        // have card follow left and disappear off screen
-        // and show a red "X" popup
+        override fun onCardRewound() {
+        }
 
+        override fun onCardCanceled() {
+        }
 
-        // on right swipe,
-        // have card follow right and disappear off screen
-        // and show a green "checkmark" popup
+        override fun onCardAppeared(view: View?, position: Int) {
+        }
+
+        override fun onCardDisappeared(view: View?, position: Int) {
+        }
+
+        override fun onCardSwiped(p0: Direction?) {
+        }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,14 +53,15 @@ class SwipeCarouselFragment: Fragment() {
         _binding = SwipeCarouselFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        initCardListeners(binding)
+        // set up card stack
+        val cardStackView = binding.cardStackView
+        val cardStackAdapter = SwipeCarouselAdapter(swipeCarouselViewModel)
+        val currentSwipeCards = swipeCarouselViewModel.observeSwipeCards().value!!
+        cardStackAdapter.updateSwipeCardsList(currentSwipeCards)
 
-        /*
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-         */
+        cardStackView.layoutManager = CardStackLayoutManager(this.context, cardStackListener)
+        cardStackView.adapter = cardStackAdapter
+
         return root
 
 
