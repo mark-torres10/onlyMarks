@@ -1,6 +1,7 @@
 package com.example.onlymarks.ui.swipeCarousel
-
+import com.yuyakaido.android.cardstackview.CardStackView
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,23 @@ class SwipeCarouselFragment: Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private fun initCardListeners(binding: SwipeCarouselFragmentBinding) {
+
+        // on click, flip card
+        binding.swipeCardLayout.setOnClickListener {
+            Log.d("XXX", "Flipping card")
+        }
+
+        // on left swipe,
+        // have card follow left and disappear off screen
+        // and show a red "X" popup
+
+
+        // on right swipe,
+        // have card follow right and disappear off screen
+        // and show a green "checkmark" popup
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +46,8 @@ class SwipeCarouselFragment: Fragment() {
         _binding = SwipeCarouselFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        initCardListeners(binding)
+
         /*
         val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {
@@ -35,6 +55,8 @@ class SwipeCarouselFragment: Fragment() {
         }
          */
         return root
+
+
     }
 
     override fun onDestroyView() {
