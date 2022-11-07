@@ -99,6 +99,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/swipeCardDistanceUnits"
                         android:text="miles away"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
