@@ -26,6 +26,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <!-- Swipe Carousel -->
+        <activity
+            android:name=".SwipeCarousel"
+            android:label="SwipeCarousel"
+            android:parentActivityName=".MainActivity"
+            />
     </application>
 
 </manifest>
