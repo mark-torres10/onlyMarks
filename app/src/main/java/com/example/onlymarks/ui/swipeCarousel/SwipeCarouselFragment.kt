@@ -9,13 +9,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.onlymarks.api.SwipeCard
 import com.example.onlymarks.databinding.SwipeCarouselFragmentBinding
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
+import kotlin.properties.Delegates
 
 class SwipeCarouselFragment: Fragment() {
 
     private var _binding: SwipeCarouselFragmentBinding? = null
+    private lateinit var adapter: SwipeCarouselAdapter
+    private lateinit var viewModel: SwipeCarouselViewModel
+
+    private lateinit var currentCard: SwipeCard
+    private var latestIndex by Delegates.notNull<Int>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -32,12 +39,30 @@ class SwipeCarouselFragment: Fragment() {
         }
 
         override fun onCardAppeared(view: View?, position: Int) {
+
         }
 
         override fun onCardDisappeared(view: View?, position: Int) {
+            Log.d("XXX", "Switching to new card.")
+            currentCard = adapter.getSwipeCardsList()[position]
+            latestIndex = position
         }
 
-        override fun onCardSwiped(p0: Direction?) {
+        override fun onCardSwiped(direction: Direction?) {
+            if (direction == Direction.Right) {
+                // update to liked profile. Update in adapter and view model
+                currentCard.youLikeThemBool = true
+                adapter.getSwipeCardsList()[latestIndex] = currentCard
+                // TODO: will have to update viewModel at some point
+                Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
+
+            } else if (direction == Direction.Left) {
+                // update to disliked profile
+                currentCard.youLikeThemBool = false
+                adapter.getSwipeCardsList()[latestIndex] = currentCard
+                // TODO: will have to update viewModel at some point
+                Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
+            }
         }
     }
 
@@ -47,20 +72,19 @@ class SwipeCarouselFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val swipeCarouselViewModel =
-            ViewModelProvider(this).get(SwipeCarouselViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SwipeCarouselViewModel::class.java)
 
         _binding = SwipeCarouselFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         // set up card stack
         val cardStackView = binding.cardStackView
-        val cardStackAdapter = SwipeCarouselAdapter(swipeCarouselViewModel)
-        val currentSwipeCards = swipeCarouselViewModel.observeSwipeCards().value!!
-        cardStackAdapter.updateSwipeCardsList(currentSwipeCards)
+        adapter = SwipeCarouselAdapter(viewModel)
+        val currentSwipeCards = viewModel.observeSwipeCards().value!!
+        adapter.updateSwipeCardsList(currentSwipeCards)
 
         cardStackView.layoutManager = CardStackLayoutManager(this.context, cardStackListener)
-        cardStackView.adapter = cardStackAdapter
+        cardStackView.adapter = adapter
 
         return root
 

@@ -13,7 +13,7 @@ class SwipeCarouselAdapter(
     private val viewModel: SwipeCarouselViewModel
 ): RecyclerView.Adapter<SwipeCarouselAdapter.ViewHolder>() {
 
-    private var swipeCardsList = listOf<SwipeCard>()
+    private var swipeCardsList = mutableListOf<SwipeCard>()
     class ViewHolder(
         val swipeCarouselItemBinding: SwipeCarouselItemBinding
     ): RecyclerView.ViewHolder(swipeCarouselItemBinding.root){
@@ -46,8 +46,12 @@ class SwipeCarouselAdapter(
 
     fun updateSwipeCardsList(newSwipeCardsList: List<SwipeCard>) {
         if (newSwipeCardsList != null) {
-            this.swipeCardsList = newSwipeCardsList
+            this.swipeCardsList = newSwipeCardsList.toMutableList()
             this.notifyDataSetChanged()
         }
+    }
+
+    fun getSwipeCardsList(): MutableList<SwipeCard> {
+        return swipeCardsList
     }
 }
