@@ -55,6 +55,7 @@ class SwipeCarouselFragment: Fragment() {
                 adapter.getSwipeCardsList()[latestIndex] = currentCard
                 // TODO: will have to update viewModel at some point
                 Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
+                viewModel.setSwipeCards(adapter.getSwipeCardsList())
 
             } else if (direction == Direction.Left) {
                 // update to disliked profile
@@ -62,6 +63,7 @@ class SwipeCarouselFragment: Fragment() {
                 adapter.getSwipeCardsList()[latestIndex] = currentCard
                 // TODO: will have to update viewModel at some point
                 Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
+                viewModel.setSwipeCards(adapter.getSwipeCardsList())
             }
         }
     }
