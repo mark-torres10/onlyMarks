@@ -56,6 +56,7 @@ class SwipeCarouselFragment: Fragment() {
                 // TODO: will have to update viewModel at some point
                 Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
                 viewModel.setSwipeCards(adapter.getSwipeCardsList())
+                // TODO: show X popup
 
             } else if (direction == Direction.Left) {
                 // update to disliked profile
@@ -64,6 +65,7 @@ class SwipeCarouselFragment: Fragment() {
                 // TODO: will have to update viewModel at some point
                 Log.d("XXX", "Liked? ${adapter.getSwipeCardsList()[latestIndex]}")
                 viewModel.setSwipeCards(adapter.getSwipeCardsList())
+                // TODO: show green checkmark
             }
         }
     }

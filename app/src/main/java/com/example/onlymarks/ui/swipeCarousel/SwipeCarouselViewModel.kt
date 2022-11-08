@@ -18,19 +18,24 @@ class SwipeCarouselViewModel: ViewModel() {
 
     fun getDefaultCards(numCards: Int): List<SwipeCard> {
         // get a default set of cards
-        val defaultId = 1 // TODO: get unique IDs by default
         val defaultName = "Vladimir Putin"
         val defaultBio = "da. da. da. Take shots with me."
         val defaultProfilePicSrc = "@drawable/putin_horse"
         val defaultAge = 28
         val defaultDistance = 5
 
-        val defaultCard = SwipeCard(
-            defaultId, defaultName, defaultBio, defaultProfilePicSrc,
-            defaultAge, defaultDistance
-        )
+        var listOfCards = mutableListOf<SwipeCard>()
 
-        return List(numCards) {defaultCard}
+        for(i in 0..numCards) {
+            listOfCards.add(
+                i, SwipeCard(
+                    i, defaultName, defaultBio, defaultProfilePicSrc,
+                    defaultAge, defaultDistance
+                )
+            )
+        }
+
+        return listOfCards.toList()
     }
 
     fun addSwipeCard() {
