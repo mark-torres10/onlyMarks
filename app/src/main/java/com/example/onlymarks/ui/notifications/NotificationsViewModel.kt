@@ -12,7 +12,7 @@ class NotificationsViewModel : ViewModel() {
         value = "This is notifications Fragment"
     }
     private val _defaultNotifications = MutableLiveData<List<Notification>>().apply {
-        value = getSeedNotifications(5)
+        value = getSeedNotifications(20)
     }
     val text: LiveData<String> = _text
     private val allNotifications: MutableLiveData<List<Notification>> = _defaultNotifications
