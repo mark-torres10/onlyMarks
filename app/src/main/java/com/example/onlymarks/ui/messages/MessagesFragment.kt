@@ -7,32 +7,40 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.onlymarks.databinding.FragmentDashboardBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.onlymarks.databinding.FragmentMessagesBinding
 
 class MessagesFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentMessagesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var viewModel: MessagesViewModel
+    private lateinit var adapter: MessagesAdapter
+    private lateinit var manager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
+        viewModel =
             ViewModelProvider(this).get(MessagesViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding = FragmentMessagesBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        manager = LinearLayoutManager(binding.root.context)
+
+        val currentMessageThreads = viewModel.observeMessageThreadsList().value!!
+        adapter = MessagesAdapter()
+        adapter.updateMessageThreadsList(currentMessageThreads)
+
+        binding.messagesRecyclerView.adapter = adapter
+        binding.messagesRecyclerView.layoutManager = manager
+
+        return binding.root
     }
 
     override fun onDestroyView() {

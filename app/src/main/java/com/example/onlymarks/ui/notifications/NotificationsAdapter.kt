@@ -29,7 +29,6 @@ class NotificationsAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentNotification = notificationsList[position]
 
-        // TODO: update what the XML should look like.
         var notificationMessage = ""
         if (currentNotification.notificationType == "swipedOnYourProfile") {
             val userName = currentNotification.sourceUserName

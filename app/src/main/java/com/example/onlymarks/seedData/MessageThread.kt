@@ -17,6 +17,7 @@ fun getSeedMessageThread(
 ): MessageThread {
     var messagesList = mutableListOf<Message>()
     var threadId = messageThreadFaker.idNumber().hashCode()
+    var otherUserName = messageThreadFaker.name().fullName().toString()
 
     for (i in 0..numMessages) {
         // have a message thread with 1:1 back and forth messages
@@ -48,7 +49,7 @@ fun getSeedMessageThread(
         }
     }
     return MessageThread(
-        threadId, sourceUserId, recipientUserId, earliestMessageTimestamp,
+        threadId, sourceUserId, recipientUserId, otherUserName, earliestMessageTimestamp,
         latestMessageTimestamp, false, messagesList
     )
 }
