@@ -1,4 +1,4 @@
-package com.example.onlymarks.ui.dashboard
+package com.example.onlymarks.ui.messages
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.onlymarks.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class MessagesFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -23,7 +23,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this).get(MessagesViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
