@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlymarks.api.SwipeCard
+import com.example.onlymarks.seedData.getSeedSwipeCards
 
 class SwipeCarouselViewModel: ViewModel() {
 
@@ -12,31 +13,9 @@ class SwipeCarouselViewModel: ViewModel() {
     }
     val text: LiveData<String> = _text
     private val _defaultCards = MutableLiveData<List<SwipeCard>>().apply {
-        value = getDefaultCards(5)
+        value = getSeedSwipeCards(5)
     }
     private val swipeCards: MutableLiveData<List<SwipeCard>> = _defaultCards
-
-    fun getDefaultCards(numCards: Int): List<SwipeCard> {
-        // get a default set of cards
-        val defaultName = "Vladimir Putin"
-        val defaultBio = "da. da. da. Take shots with me."
-        val defaultProfilePicSrc = "@drawable/putin_horse"
-        val defaultAge = 28
-        val defaultDistance = 5
-
-        var listOfCards = mutableListOf<SwipeCard>()
-
-        for(i in 0..numCards) {
-            listOfCards.add(
-                i, SwipeCard(
-                    i, defaultName, defaultBio, defaultProfilePicSrc,
-                    defaultAge, defaultDistance
-                )
-            )
-        }
-
-        return listOfCards.toList()
-    }
 
     fun addSwipeCard() {
         // TODO: check that card isn't already in stack. If not,
