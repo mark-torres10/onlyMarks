@@ -6,10 +6,14 @@ import net.datafaker.Faker
 
 val messageThreadFaker = Faker()
 
+const val DEFAULT_NUM_MESSAGES_PER_THREAD = 5
+const val DEFAULT_SOURCE_USER_ID = 1
+const val DEFAULT_RECIPIENT_USER_ID = 2
+
 fun getSeedMessageThread(
-    numMessages: Int,
-    sourceUserId: Int,
-    recipientUserId: Int
+    numMessages: Int = DEFAULT_NUM_MESSAGES_PER_THREAD,
+    sourceUserId: Int = DEFAULT_SOURCE_USER_ID,
+    recipientUserId: Int = DEFAULT_RECIPIENT_USER_ID
 ): MessageThread {
     var messagesList = mutableListOf<Message>()
     var threadId = messageThreadFaker.idNumber().hashCode()
@@ -28,6 +32,9 @@ fun getSeedMessageThread(
         messagesList.add(i, getSingleSeedMessage(threadId, sentFromId, sentToId))
     }
 
+    // sort messages list by createdAtTimestamp (ascending)
+    messagesList.sortBy{it.createdAtTimestamp}
+
     // get timestamp of latest and earliest dates in listOfNotifications
     var earliestMessageTimestamp = messagesList[0].createdAtTimestamp
     var latestMessageTimestamp = messagesList[0].createdAtTimestamp
@@ -44,4 +51,20 @@ fun getSeedMessageThread(
         threadId, sourceUserId, recipientUserId, earliestMessageTimestamp,
         latestMessageTimestamp, false, messagesList
     )
+}
+
+fun getSeedMessageThreads(
+    numThreads: Int,
+    numMessagesPerThread: Int = DEFAULT_NUM_MESSAGES_PER_THREAD,
+    sourceUserId: Int = DEFAULT_SOURCE_USER_ID,
+    recipientUserId: Int = DEFAULT_RECIPIENT_USER_ID
+): List<MessageThread> {
+    var listOfMessageThreads = mutableListOf<MessageThread>()
+    for (i in 0..numThreads) {
+        val messageThread = getSeedMessageThread(
+            numMessagesPerThread, sourceUserId, recipientUserId
+        )
+        listOfMessageThreads.add(i, messageThread)
+    }
+    return listOfMessageThreads.toList()
 }
