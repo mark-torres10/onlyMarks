@@ -27,12 +27,10 @@
             android:id="@+id/swipeCardLayout"
             >
             <!-- Image, constrained to top of card -->
-            <!-- TODO: On long press/hold, add opacity -->
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 android:id="@+id/swipeCardImage"
-                android:src="@drawable/putin_horse"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/swipeCardInfo"
                 app:layout_constraintStart_toStartOf="parent"
