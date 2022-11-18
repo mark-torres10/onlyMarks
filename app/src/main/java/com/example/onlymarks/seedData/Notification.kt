@@ -1,7 +1,6 @@
 package com.example.onlymarks.seedData
 
-import com.example.onlymarks.api.Notification
-import java.sql.Timestamp
+import com.example.onlymarks.dataclasses.Notification
 
 fun getSeedNotifications(numNotifications: Int): List<Notification> {
     // TODO: turn defaultNotificationType into enum

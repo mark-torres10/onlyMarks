@@ -1,4 +1,4 @@
-package com.example.onlymarks.api
+package com.example.onlymarks.dataclasses
 
 import java.sql.Timestamp
 

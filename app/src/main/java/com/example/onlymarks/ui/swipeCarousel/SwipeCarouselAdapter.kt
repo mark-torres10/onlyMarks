@@ -1,13 +1,10 @@
 package com.example.onlymarks.ui.swipeCarousel
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.onlymarks.R
-import com.example.onlymarks.api.SwipeCard
-import com.example.onlymarks.databinding.SwipeCarouselFragmentBinding
+import com.example.onlymarks.dataclasses.SwipeCard
 import com.example.onlymarks.databinding.SwipeCarouselItemBinding
 
 class SwipeCarouselAdapter(

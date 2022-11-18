@@ -1,6 +1,6 @@
 package com.example.onlymarks.seedData
 
-import com.example.onlymarks.api.Message
+import com.example.onlymarks.dataclasses.Message
 import net.datafaker.Faker
 import java.util.concurrent.TimeUnit
 

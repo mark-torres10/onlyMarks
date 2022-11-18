@@ -3,7 +3,7 @@ package com.example.onlymarks.ui.swipeCarousel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.onlymarks.api.SwipeCard
+import com.example.onlymarks.dataclasses.SwipeCard
 import com.example.onlymarks.seedData.getSeedSwipeCards
 
 class SwipeCarouselViewModel: ViewModel() {

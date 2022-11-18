@@ -1,15 +1,13 @@
 package com.example.onlymarks.ui.swipeCarousel
-import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.onlymarks.api.SwipeCard
+import com.example.onlymarks.dataclasses.SwipeCard
 import com.example.onlymarks.databinding.SwipeCarouselFragmentBinding
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction

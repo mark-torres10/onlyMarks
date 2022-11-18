@@ -1,12 +1,9 @@
 package com.example.onlymarks.ui.messages
 
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.example.onlymarks.api.MessageThread
-import com.example.onlymarks.api.Notification
+import com.example.onlymarks.dataclasses.MessageThread
 import com.example.onlymarks.databinding.MessageItemBinding
 
 private const val DEFAULT_TRUNCATE_LENGTH = 50

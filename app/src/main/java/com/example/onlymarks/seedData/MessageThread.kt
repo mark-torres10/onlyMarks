@@ -1,7 +1,7 @@
 package com.example.onlymarks.seedData
 
-import com.example.onlymarks.api.Message
-import com.example.onlymarks.api.MessageThread
+import com.example.onlymarks.dataclasses.Message
+import com.example.onlymarks.dataclasses.MessageThread
 import net.datafaker.Faker
 
 val messageThreadFaker = Faker()

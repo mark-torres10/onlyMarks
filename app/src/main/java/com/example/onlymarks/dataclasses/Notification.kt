@@ -1,4 +1,4 @@
-package com.example.onlymarks.api
+package com.example.onlymarks.dataclasses
 
 data class Notification (
     var id: Int,

@@ -1,6 +1,6 @@
 package com.example.onlymarks.seedData
 
-import com.example.onlymarks.api.SwipeCard
+import com.example.onlymarks.dataclasses.SwipeCard
 
 fun getSeedSwipeCards(numCards: Int): List<SwipeCard> {
     val defaultBio = "da. da. da. Take shots with me."

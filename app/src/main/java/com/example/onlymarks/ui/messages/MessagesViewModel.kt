@@ -3,7 +3,7 @@ package com.example.onlymarks.ui.messages
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.onlymarks.api.MessageThread
+import com.example.onlymarks.dataclasses.MessageThread
 import com.example.onlymarks.seedData.getSeedMessageThreads
 
 class MessagesViewModel : ViewModel() {

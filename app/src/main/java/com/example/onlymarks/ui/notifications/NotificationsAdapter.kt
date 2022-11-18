@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.onlymarks.api.Notification
+import com.example.onlymarks.dataclasses.Notification
 import com.example.onlymarks.databinding.NotificationItemBinding
 
 class NotificationsAdapter (

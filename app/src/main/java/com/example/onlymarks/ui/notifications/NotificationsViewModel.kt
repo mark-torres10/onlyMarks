@@ -3,7 +3,7 @@ package com.example.onlymarks.ui.notifications
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.onlymarks.api.Notification
+import com.example.onlymarks.dataclasses.Notification
 import com.example.onlymarks.seedData.getSeedNotifications
 
 class NotificationsViewModel : ViewModel() {
