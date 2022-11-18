@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.onlymarks.R
 import com.example.onlymarks.api.SwipeCard
 import com.example.onlymarks.databinding.SwipeCarouselFragmentBinding
@@ -30,14 +31,17 @@ class SwipeCarouselAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // TODO: set elements of card
         val currentSwipeCard = swipeCardsList[position]
-        // TODO: update image
         //holder.swipeCarouselItemBinding.swipeCardImage.setImageDrawable()
         holder.swipeCarouselItemBinding.swipeCardName.text = currentSwipeCard.name
         holder.swipeCarouselItemBinding.swipeCardAge.text = currentSwipeCard.age.toString()
         holder.swipeCarouselItemBinding.swipeCardBio.text = currentSwipeCard.bio
         holder.swipeCarouselItemBinding.swipeCardDistance.text = currentSwipeCard.distance.toString()
+
+        val url = currentSwipeCard.profilePicStr.toString()
+        Glide.with(
+            holder.swipeCarouselItemBinding.swipeCardImage.context
+        ).load(url).into(holder.swipeCarouselItemBinding.swipeCardImage)
     }
 
     override fun getItemCount(): Int {

@@ -4,7 +4,7 @@ data class SwipeCard (
     var id: Int,
     var name: String,
     var bio: String,
-    var profile_pic_src: String,
+    var profilePicStr: String,
     var age: Int,
     var distance: Int,
     var theyLikeYouBool: Boolean = false,
