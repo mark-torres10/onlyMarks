@@ -42,5 +42,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+    <!-- "No more swipes -->
+    <TextView
+        android:id="@+id/noMoreSwipeCardsMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Sorry, there's no more Marks in your area! Please go outside and touch grass."
+        android:visibility="invisible"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

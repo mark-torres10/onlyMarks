@@ -1,10 +1,10 @@
 package com.example.onlymarks.dataclasses
 
-data class SwipeCard (
+data class SwipeCard(
     var id: Int,
     var name: String,
     var bio: String,
-    var profilePicStr: String,
+    var profilePics: List<String>,
     var age: Int,
     var distance: Int,
     var theyLikeYouBool: Boolean = false,

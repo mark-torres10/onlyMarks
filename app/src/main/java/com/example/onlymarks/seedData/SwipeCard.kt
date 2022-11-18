@@ -3,8 +3,6 @@ package com.example.onlymarks.seedData
 import com.example.onlymarks.dataclasses.SwipeCard
 
 fun getSeedSwipeCards(numCards: Int): List<SwipeCard> {
-    val defaultBio = "da. da. da. Take shots with me."
-
     var listOfCards = mutableListOf<SwipeCard>()
 
     val maxListOfMarks = LIST_OF_MARKS.size
@@ -13,11 +11,10 @@ fun getSeedSwipeCards(numCards: Int): List<SwipeCard> {
         val name = LIST_OF_MARKS[idx]
         val profilePicLink = MARK_TO_IMAGE[name]!!
         val age = MARK_TO_AGE[name]!!
+        val bio = MARK_TO_BIO[name]!!
         val distance = (10 * Math.random()).toInt()
         listOfCards.add(
-            i, SwipeCard(
-                i, name, defaultBio, profilePicLink, age, distance
-            )
+            i, SwipeCard(i, name, bio, profilePicLink, age, distance)
         )
     }
 

@@ -79,7 +79,14 @@ class SwipeCarouselFragment: Fragment() {
                 Log.d("XXX", "Reached end of stack.")
                 sleep(500)
                 clearOverlays()
+
+                // show view here.
+                binding.noMoreSwipeCardsMessage.visibility = View.VISIBLE
             }
+            else {
+                binding.noMoreSwipeCardsMessage.visibility = View.INVISIBLE
+            }
+
             if (direction == Direction.Right) {
                 // update to liked profile. Update in adapter and view model
                 currentCard.youLikeThemBool = true
