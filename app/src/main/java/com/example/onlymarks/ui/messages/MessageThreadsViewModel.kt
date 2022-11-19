@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.onlymarks.dataclasses.MessageThread
 import com.example.onlymarks.seedData.getSeedMessageThreads
 
-class MessagesViewModel : ViewModel() {
+class MessageThreadsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

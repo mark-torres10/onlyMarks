@@ -34,16 +34,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Messages (RecyclerView) -->
-    <TextView
-        android:id="@+id/texts"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/threadMessagesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="550dp"
+        android:scrollbars="vertical"
         android:text = "Messages will go here..."
         />
 
     <!-- Text message box -->
-    <TextView
-        android:id="@+id/postTextMessage"
+    <!-- TODO: add black border around message box -->
+    <EditText
+        android:id="@+id/newTextMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text = "Text message box will go here..."

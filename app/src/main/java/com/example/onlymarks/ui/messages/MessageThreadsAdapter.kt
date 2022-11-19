@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onlymarks.dataclasses.MessageThread
-import com.example.onlymarks.databinding.MessageItemBinding
+import com.example.onlymarks.databinding.MessageThreadsItemBinding
 
 private const val DEFAULT_TRUNCATE_LENGTH = 50
 
@@ -15,31 +15,21 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
     private var messageThreadsList = mutableListOf<MessageThread>()
 
     class ViewHolder(
-        val messageBinding: MessageItemBinding
+        val messageBinding: MessageThreadsItemBinding
     ): RecyclerView.ViewHolder(messageBinding.root) {
         init {}
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val messageBinding = MessageItemBinding.inflate(
+        val messageBinding = MessageThreadsItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        messageBinding.root.setOnClickListener {
-            val oneMessageIntent = Intent(parent.context, OneMessageThread::class.java)
-            val extras = Bundle()
-            val messagePersonName = messageBinding.messagePersonName.text.toString()
-            extras.putString("messagePersonName", messagePersonName)
-            oneMessageIntent.putExtras(extras)
-            parent.context.startActivity(oneMessageIntent)
-        }
         return ViewHolder(messageBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentMessageThread = messageThreadsList[position]
 
-        // TODO: verify that latest message added to thread is at end of message list
-        // TODO: think this is enforced in seed data, but not enforced otherwise?
         val totalNumMessages = currentMessageThread.messages.size
         val latestMessage = currentMessageThread.messages[totalNumMessages-1].message
         var latestMessageStr = ""
@@ -54,6 +44,18 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
 
         holder.messageBinding.messagePersonName.text = otherUserName
         holder.messageBinding.messageText.text = latestMessageStr
+
+        holder.messageBinding.root.setOnClickListener {
+            val oneMessageIntent = Intent(
+                holder.messageBinding.root.context, OneMessageThread::class.java
+            )
+            val extras = Bundle()
+            val messagePersonName = holder.messageBinding.messagePersonName.text.toString()
+            extras.putString("messagePersonName", messagePersonName)
+            extras.putParcelable("messageThread", currentMessageThread)
+            oneMessageIntent.putExtras(extras)
+            holder.messageBinding.root.context.startActivity(oneMessageIntent)
+        }
 
     }
 

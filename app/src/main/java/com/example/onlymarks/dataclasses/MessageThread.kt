@@ -1,7 +1,10 @@
 package com.example.onlymarks.dataclasses
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.sql.Timestamp
 
+@Parcelize
 data class MessageThread (
     var threadId: Int,
     var threadOwnerId: Int, // TODO: default assigned to whoever wrote first message
@@ -11,4 +14,4 @@ data class MessageThread (
     var lastMessageTimestamp: Timestamp,
     var lastMessageReadBool: Boolean,
     var messages: MutableList<Message>
-)
+) : Parcelable
