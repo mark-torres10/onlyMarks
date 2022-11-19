@@ -2,9 +2,12 @@ package com.example.onlymarks.ui.messages
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.onlymarks.R
 import com.example.onlymarks.databinding.ActivityOneMessageThreadBinding
 import com.example.onlymarks.dataclasses.Message
 import com.example.onlymarks.dataclasses.MessageThread
@@ -54,12 +57,15 @@ class OneMessageThread: AppCompatActivity() {
         }
         manager = LinearLayoutManager(binding.root.context)
         // https://stackoverflow.com/questions/29474876/make-recycler-view-show-rows-from-bottom
-        manager.stackFromEnd = true
+        //manager.stackFromEnd = true
         manager.reverseLayout = false
-        binding.threadMessagesRecyclerView.scrollToPosition(messageThread!!.messages.size - 1)
 
         binding.threadMessagesRecyclerView.adapter = adapter
         binding.threadMessagesRecyclerView.layoutManager = manager
+
+        if (messageThread != null) {
+            binding.threadMessagesRecyclerView.scrollToPosition(messageThread!!.messages.size - 1)
+        }
 
         binding.newTextMessage.doAfterTextChanged {
             if (it?.length!! > 0) {
@@ -81,5 +87,18 @@ class OneMessageThread: AppCompatActivity() {
                 binding.threadMessagesRecyclerView.scrollToPosition(messageThread!!.messages.size - 1)
             }
         }
+        if (supportActionBar != null) {
+            supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_chevron_left_24)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                Log.d("XXX", "Clicking back button")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
