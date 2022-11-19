@@ -6,6 +6,7 @@ import com.example.onlymarks.databinding.ActivityOneMessageThreadBinding
 
 class OneMessageThread: AppCompatActivity() {
     private lateinit var binding: ActivityOneMessageThreadBinding
+    private var messagePersonName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,5 +16,12 @@ class OneMessageThread: AppCompatActivity() {
         val activityThatCalled = intent
 
         val callingBundle = activityThatCalled.extras
+        messagePersonName = callingBundle?.getString("messagePersonName")
+
+        messagePersonName?.apply {
+            binding.messageHeaderText.text = this
+        }
+
+
     }
 }

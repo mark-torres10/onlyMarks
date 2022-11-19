@@ -27,6 +27,8 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
         messageBinding.root.setOnClickListener {
             val oneMessageIntent = Intent(parent.context, OneMessageThread::class.java)
             val extras = Bundle()
+            val messagePersonName = messageBinding.messagePersonName.text.toString()
+            extras.putString("messagePersonName", messagePersonName)
             oneMessageIntent.putExtras(extras)
             parent.context.startActivity(oneMessageIntent)
         }
