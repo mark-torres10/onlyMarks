@@ -12,27 +12,13 @@ class MessageThreadsViewModel : ViewModel() {
         value = "This is dashboard Fragment"
     }
     private val _defaultMessageThreads = MutableLiveData<List<MessageThread>>().apply {
-        value = getSeedMessageThreads(20)
+        value = getSeedMessageThreads(5)
     }
     val text: LiveData<String> = _text
     private val messageThreadsList: MutableLiveData<List<MessageThread>> = _defaultMessageThreads
 
     fun setMessageThreadsList(newMessageThreadsList: List<MessageThread>) {
         messageThreadsList.value = newMessageThreadsList
-    }
-
-    fun setUpdatedMessageThreadInThreadsList(updatedMessageThread: MessageThread) {
-        // update one of the message threads currently in the list.
-        val currentThreads = messageThreadsList.value!!
-        var updatedMessageThreadsList = mutableListOf<MessageThread>()
-        for (messageThread in currentThreads) {
-            if (messageThread.threadId == updatedMessageThread.threadId) {
-                updatedMessageThreadsList.add(updatedMessageThread)
-            } else {
-                updatedMessageThreadsList.add(messageThread)
-            }
-        }
-        messageThreadsList.value = updatedMessageThreadsList
     }
 
     fun observeMessageThreadsList(): MutableLiveData<List<MessageThread>> {

@@ -1,5 +1,6 @@
 package com.example.onlymarks.seedData
 
+import java.util.UUID
 import com.example.onlymarks.dataclasses.Message
 import com.example.onlymarks.dataclasses.MessageThread
 import net.datafaker.Faker
@@ -16,7 +17,7 @@ fun getSeedMessageThread(
     recipientUserId: Int = DEFAULT_RECIPIENT_USER_ID
 ): MessageThread {
     var messagesList = mutableListOf<Message>()
-    var threadId = messageThreadFaker.idNumber().hashCode()
+    var threadId = UUID.randomUUID().hashCode()
     var otherUserName = messageThreadFaker.name().fullName().toString()
 
     for (i in 0..numMessages) {

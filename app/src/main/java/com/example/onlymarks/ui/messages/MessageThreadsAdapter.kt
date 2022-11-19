@@ -4,15 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onlymarks.dataclasses.MessageThread
 import com.example.onlymarks.databinding.MessageThreadsItemBinding
 
 private const val DEFAULT_TRUNCATE_LENGTH = 50
 
-class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
+class MessageThreadsAdapter(
+    resultLauncher: ActivityResultLauncher<Intent>
+): RecyclerView.Adapter<MessageThreadsAdapter.ViewHolder>() {
 
     private var messageThreadsList = mutableListOf<MessageThread>()
+    private var messageResultLauncher = resultLauncher
 
     class ViewHolder(
         val messageBinding: MessageThreadsItemBinding
@@ -54,7 +58,8 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
             extras.putString("messagePersonName", messagePersonName)
             extras.putParcelable("messageThread", currentMessageThread)
             oneMessageIntent.putExtras(extras)
-            holder.messageBinding.root.context.startActivity(oneMessageIntent)
+            //holder.messageBinding.root.context.startActivity(oneMessageIntent)
+            messageResultLauncher.launch(oneMessageIntent)
         }
 
     }

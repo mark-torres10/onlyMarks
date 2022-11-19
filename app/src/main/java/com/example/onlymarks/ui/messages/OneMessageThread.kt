@@ -1,9 +1,8 @@
 package com.example.onlymarks.ui.messages
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,8 @@ import com.example.onlymarks.databinding.ActivityOneMessageThreadBinding
 import com.example.onlymarks.dataclasses.Message
 import com.example.onlymarks.dataclasses.MessageThread
 import java.sql.Timestamp
+import java.util.UUID
+
 
 class OneMessageThread: AppCompatActivity() {
     private lateinit var binding: ActivityOneMessageThreadBinding
@@ -24,7 +25,7 @@ class OneMessageThread: AppCompatActivity() {
     //private val viewModel: MessageThreadsViewModel by activityViewModel
 
     private fun createNewMessage(messageText: String): Message {
-        val messageId = 1 // TODO: get uuid via other method
+        val messageId = UUID.randomUUID().hashCode()
         val threadId = messageThread?.threadId!!
         val sentFromId = messageThread?.threadOwnerId!!
         val sentToId = messageThread?.threadReceiverId!!
@@ -79,7 +80,6 @@ class OneMessageThread: AppCompatActivity() {
                 // update adapter with new message
                 val newMessage = createNewMessage(textMessage)
                 messageThread?.messages!!.add(newMessage)
-                Log.d("XXX", "Number of messages after submit: ${messageThread!!.messages.size}")
                 adapter.updateMessageThread(messageThread!!)
                 // clear edittext
                 binding.newTextMessage.text.clear()
@@ -96,9 +96,15 @@ class OneMessageThread: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                Log.d("XXX", "Clicking back button")
+                val returnIntent = Intent().apply {
+                    putExtra("updatedMessageThread", messageThread)
+                }
+                setResult(RESULT_OK, returnIntent)
+                finish()
+                return true
             }
+            else -> return false
         }
-        return super.onOptionsItemSelected(item)
+        //return super.onOptionsItemSelected(item)
     }
 }
