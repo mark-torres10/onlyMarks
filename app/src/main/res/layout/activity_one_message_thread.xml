@@ -37,17 +37,36 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/threadMessagesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
         android:scrollbars="vertical"
         android:text = "Messages will go here..."
         />
 
     <!-- Text message box -->
     <!-- TODO: add black border around message box -->
-    <EditText
-        android:id="@+id/newTextMessage"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Text message box will go here..."
-        />
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/newTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:layout_weight="6"
+            />
+        <ImageView
+            android:id="@+id/newMessageSubmitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_send_72"
+            android:alpha="0.5"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:layout_weight="0.5"
+            />
+    </LinearLayout>
 </LinearLayout>

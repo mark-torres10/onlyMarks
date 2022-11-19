@@ -31,19 +31,21 @@ class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentMessage = messageList[position]
         val currentMessageText = currentMessage.message
+        val leftView = holder.messageBinding.messageTextLeft
+        val rightView = holder.messageBinding.messageTextRight
 
         // if message sent from someone else, display on left side.
         if (currentMessage.sentFromId == messageThreadReceiverId) {
-            val view = holder.messageBinding.messageTextLeft
-            view.visibility = View.VISIBLE
-            view.text = currentMessageText
+            rightView.visibility = View.INVISIBLE
+            leftView.visibility = View.VISIBLE
+            leftView.text = currentMessageText
         }
 
         // if message sent from current user, display on right side.
         else if (currentMessage.sentFromId == messageThreadOwnerId) {
-            val view = holder.messageBinding.messageTextRight
-            view.visibility = View.VISIBLE
-            view.text = currentMessageText
+            leftView.visibility = View.INVISIBLE
+            rightView.visibility = View.VISIBLE
+            rightView.text = currentMessageText
         }
     }
 
