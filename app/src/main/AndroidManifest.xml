@@ -26,12 +26,19 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!-- Swipe Carousel -->
+        <!-- Single text message thread -->
+        <activity
+            android:name=".ui.messages.OneMessageThread"
+            android:label="OneMessageThread"
+            android:parentActivityName=".MainActivity"
+            />
+        <!-- Settings -->
         <activity
             android:name=".SettingsManager"
             android:label="SettingsManager"
             android:parentActivityName=".MainActivity"
             />
+
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.example.onlymarks.ui.messages
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,12 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
         val messageBinding = MessageItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
+        messageBinding.root.setOnClickListener {
+            val oneMessageIntent = Intent(parent.context, OneMessageThread::class.java)
+            val extras = Bundle()
+            oneMessageIntent.putExtras(extras)
+            parent.context.startActivity(oneMessageIntent)
+        }
         return ViewHolder(messageBinding)
     }
 
@@ -44,6 +52,7 @@ class MessagesAdapter(): RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
 
         holder.messageBinding.messagePersonName.text = otherUserName
         holder.messageBinding.messageText.text = latestMessageStr
+
     }
 
     override fun getItemCount(): Int {
