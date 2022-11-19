@@ -60,6 +60,7 @@ class SwipeCarouselFragment: Fragment() {
         }
 
         override fun onCardCanceled() {
+            clearOverlays()
         }
 
         override fun onCardAppeared(view: View?, position: Int) {
