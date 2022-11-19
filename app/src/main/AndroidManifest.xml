@@ -29,7 +29,7 @@
         <!-- Single text message thread -->
         <activity
             android:name=".ui.messages.OneMessageThread"
-            android:label="OneMessageThread"
+            android:label="Messages"
             android:parentActivityName=".MainActivity"
             />
         <!-- Settings -->

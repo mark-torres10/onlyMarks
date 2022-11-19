@@ -9,11 +9,17 @@ val messageFaker = Faker()
 fun getSingleSeedMessage(
     sourceThreadId: Int,
     sentFromId: Int,
-    sentToId: Int
+    sentToId: Int,
+    customMessage: String? = null
 ): Message {
     var messageId = messageFaker.idNumber().hashCode()
     var createdAtTimestamp = messageFaker.date().past(48, TimeUnit.HOURS)
-    var message = messageFaker.greekPhilosopher().quote()
+    var message: String
+    if (customMessage == null) {
+        message = messageFaker.greekPhilosopher().quote()
+    } else {
+        message = customMessage
+    }
     var attachments = mutableListOf<String>()
 
     return Message(

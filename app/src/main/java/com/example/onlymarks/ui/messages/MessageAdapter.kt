@@ -1,8 +1,10 @@
 package com.example.onlymarks.ui.messages
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onlymarks.databinding.MessageItemBinding
 import com.example.onlymarks.dataclasses.Message

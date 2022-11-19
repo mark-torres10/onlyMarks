@@ -12,7 +12,7 @@ class MessageThreadsViewModel : ViewModel() {
         value = "This is dashboard Fragment"
     }
     private val _defaultMessageThreads = MutableLiveData<List<MessageThread>>().apply {
-        value = getSeedMessageThreads(5)
+        value = getSeedMessageThreads()
     }
     val text: LiveData<String> = _text
     private val messageThreadsList: MutableLiveData<List<MessageThread>> = _defaultMessageThreads

@@ -91,3 +91,8 @@ val MARK_TO_BIO = mapOf(
     "Mark Tuan" to "*speaks* *a row of 50 Kpop girls faint*",
     "Marc Anthony" to "Fame is addictive."
 )
+
+val DUMMY_MESSAGES_LIST = listOf(
+    "Ur so sexy", "No that's u", "Hey what's ur name?", "It's Mark, what's your name?",
+    "No way, I'm also a fellow Mark!"
+)

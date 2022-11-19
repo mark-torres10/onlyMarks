@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.onlymarks.dataclasses.MessageThread
 import com.example.onlymarks.databinding.MessageThreadsItemBinding
+import com.example.onlymarks.seedData.MARK_TO_IMAGE
 
-private const val DEFAULT_TRUNCATE_LENGTH = 50
+private const val DEFAULT_TRUNCATE_LENGTH = 40
 
 class MessageThreadsAdapter(
     resultLauncher: ActivityResultLauncher<Intent>
@@ -36,6 +40,7 @@ class MessageThreadsAdapter(
 
         val totalNumMessages = currentMessageThread.messages.size
         val latestMessage = currentMessageThread.messages[totalNumMessages-1].message
+
         var latestMessageStr = ""
         if (latestMessage.length > DEFAULT_TRUNCATE_LENGTH) {
             latestMessageStr = (
@@ -58,9 +63,17 @@ class MessageThreadsAdapter(
             extras.putString("messagePersonName", messagePersonName)
             extras.putParcelable("messageThread", currentMessageThread)
             oneMessageIntent.putExtras(extras)
-            //holder.messageBinding.root.context.startActivity(oneMessageIntent)
             messageResultLauncher.launch(oneMessageIntent)
         }
+
+        val thumbnailImageView = holder.messageBinding.messagePersonThumbnail
+        val url = MARK_TO_IMAGE[currentMessageThread.otherUserName]?.get(0)
+
+        Glide.with(thumbnailImageView.context)
+            .load(url)
+            .circleCrop()
+            .override(120, 120)
+            .into(thumbnailImageView)
 
     }
 
